@@ -22,43 +22,38 @@ export default function InquireComputeForm() {
     });
   };
 
-  const handleSubmit = () => {
+const handleSubmit = () => {
     if (!formData.name || !formData.email || !formData.workloadType || !formData.gpuCount || !formData.duration || !formData.timeline) {
       alert('Please fill in all required fields (*)');
       return;
     }
-    console.log('Form submitted:', formData);
-    setSubmitted(true);
-  };
+    
+    // Create email body
+    const emailBody = `
+New Compute Inquiry from TrustCat.ai
 
-  if (submitted) {
-    return (
-      <div className="min-h-screen bg-black text-green-500 font-mono flex items-center justify-center p-4">
-        <div className="max-w-2xl w-full border-2 border-green-500 bg-green-500/5 p-12 text-center">
-          <CheckCircle className="w-16 h-16 text-green-500 mx-auto mb-6" />
-          <h1 className="text-4xl font-bold mb-4">REQUEST RECEIVED</h1>
-          <p className="text-xl mb-8 opacity-80">
-            Our team will contact you within 24 hours to discuss your compute requirements.
-          </p>
-          <div className="space-y-2 text-sm mb-8">
-            <div className="flex items-center justify-center space-x-2">
-              <Mail className="w-4 h-4 text-cyan-400" />
-              <span className="text-cyan-400">terminal@trustcat.ai</span>
-            </div>
-            <div className="flex items-center justify-center space-x-2">
-              <Phone className="w-4 h-4 text-cyan-400" />
-              <span className="text-cyan-400">561.532.7120</span>
-            </div>
-          </div>
-          <button 
-            onClick={() => window.location.href = '/'}
-            className="px-8 py-3 bg-green-500 text-black font-bold hover:bg-green-400 transition"
-          >
-            RETURN TO HOMEPAGE
-          </button>
-        </div>
-      </div>
-    );
+Name: ${formData.name}
+Email: ${formData.email}
+Company: ${formData.company || 'N/A'}
+Workload Type: ${formData.workloadType}
+GPU Count: ${formData.gpuCount}
+Duration: ${formData.duration}
+Budget: ${formData.budget || 'N/A'}
+Timeline: ${formData.timeline}
+Details: ${formData.details || 'N/A'}
+    `.trim();
+
+    // Create mailto link
+    const mailtoLink = `mailto:terminal@trustcat.ai?subject=Compute Inquiry from ${encodeURIComponent(formData.name)}&body=${encodeURIComponent(emailBody)}`;
+    
+    // Open email client
+    window.open(mailtoLink, '_blank');
+    
+    // Show success message
+    setSubmitted(true);
+    
+    console.log('Form submitted:', formData);
+  };
   }
 
   return (
