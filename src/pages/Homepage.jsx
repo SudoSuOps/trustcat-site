@@ -662,57 +662,57 @@ export default function TrustCatHomepage() {
 
       {/* Footer */}
       <footer className="border-t border-green-500/30 bg-black/80 mt-20">
-        <div className="max-w-7xl mx-auto px-4 py-12">
-          <div className="grid md:grid-cols-4 gap-8 mb-8">
-            <div>
-              <h4 className="font-bold mb-4">Resources</h4>
-              <ul className="space-y-2 text-sm opacity-70">
-                <li><a href="#" className="hover:text-cyan-400">Whitepaper</a></li>
+  <div className="max-w-7xl mx-auto px-4 py-12">
+    <div className="grid md:grid-cols-4 gap-8 mb-8">
+      <div>
+        <h4 className="font-bold mb-4">Resources</h4>
+        <ul className="space-y-2 text-sm opacity-70">
+          <li><a href="#" className="hover:text-cyan-400">Whitepaper</a></li>
                 <li><a href="#" className="hover:text-cyan-400">Documentation</a></li>
-                <li><a href="#" className="hover:text-cyan-400">Network Status</a></li>
+          <li><a href="#" className="hover:text-cyan-400">Network Status</a></li>
                 <li><a href="#" className="hover:text-cyan-400">GitHub</a></li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="font-bold mb-4">Get Started</h4>
-              <ul className="space-y-2 text-sm opacity-70">
-                <li><a href="#" className="hover:text-cyan-400">Provider Application</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 className="font-bold mb-4">Get Started</h4>
+        <ul className="space-y-2 text-sm opacity-70">
+          <li><a href="#" className="hover:text-cyan-400">Provider Application</a></li>
                 <li><a href="#" className="hover:text-cyan-400">Broker Application</a></li>
                 <li><a href="#" className="hover:text-cyan-400">Client Demo</a></li>
                 <li><a href="#" className="hover:text-cyan-400">Support</a></li>
-              </ul>
-            </div>
-            <div>
+        </ul>
+      </div>
+      <div>
               <h4 className="font-bold mb-4">Company</h4>
-              <ul className="space-y-2 text-sm opacity-70">
+        <ul className="space-y-2 text-sm opacity-70">
                 <li><a href="#" className="hover:text-cyan-400">About</a></li>
                 <li><a href="#" className="hover:text-cyan-400">Blog</a></li>
                 <li><a href="#" className="hover:text-cyan-400">Careers</a></li>
                 <li><a href="#" className="hover:text-cyan-400">Contact</a></li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="font-bold mb-4">Legal</h4>
-              <ul className="space-y-2 text-sm opacity-70">
-                <li><a href="#" className="hover:text-cyan-400">Terms of Service</a></li>
-                <li><a href="#" className="hover:text-cyan-400">Privacy Policy</a></li>
-                <li><a href="#" className="hover:text-cyan-400">Provider Agreement</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 className="font-bold mb-4">Legal</h4>
+        <ul className="space-y-2 text-sm opacity-70">
+          <li><a href="#" className="hover:text-cyan-400">Terms of Service</a></li>
+          <li><a href="#" className="hover:text-cyan-400">Privacy Policy</a></li>
+          <li><a href="#" className="hover:text-cyan-400">Provider Agreement</a></li>
                 <li><a href="#" className="hover:text-cyan-400">Broker Agreement</a></li>
-              </ul>
-            </div>
-          </div>
-          <div className="border-t border-green-500/30 pt-8 text-center">
-            <div className="mb-4 text-cyan-400 text-sm">
-              &gt; TrustCat LLC © 2025
-            </div>
-            <div className="text-sm opacity-70">
-              C.A.T: Compute · Adoption · Trust
-            </div>
-            <div className="mt-2 text-sm">
-              &gt; trust_the_machine_
-            </div>
-          </div>
-        </div>
+        </ul>
+      </div>
+    </div>
+    <div className="border-t border-green-500/30 pt-8 text-center">
+      <div className="mb-4 text-cyan-400 text-sm">
+        &gt; TrustCat LLC © 2025
+      </div>
+      <div className="text-sm opacity-70">
+        C.A.T: Compute · Adoption · Trust
+      </div>
+      <div className="mt-2 text-sm">
+        &gt; trust_the_machine_
+      </div>
+    </div>
+  </div>
       </footer>
     </div>
   );
