@@ -7,6 +7,9 @@ import InquireCompute from './pages/InquireCompute'
 import BrokerLogin from './pages/BrokerLogin'
 import Docs from './pages/Docs'
 import SudoHashProfile from './pages/SudoHashProfile'
+import GrantsLanding from './pages/GrantsLanding'
+import GrantsApply from './pages/GrantsApply'
+import GrantsDashboard from './pages/GrantsDashboard'
 
 function App() {
   return (
@@ -19,6 +22,9 @@ function App() {
         <Route path="/docs" element={<Docs />} />
         <Route path="/provider/:id" element={<ProviderProfile />} />
         <Route path="/provider/sudohash" element={<SudoHashProfile />} />
+        <Route path="/grants" element={<GrantsLanding />} />
+        <Route path="/grants/apply" element={<GrantsApply />} />
+        <Route path="/grants/dashboard" element={<GrantsDashboard />} />
       </Routes>
     </Router>
   )
