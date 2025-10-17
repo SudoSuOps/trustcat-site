@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Activity, Zap, Shield, ChevronRight, Terminal, Database, Users, TrendingUp, Wallet, ExternalLink, CheckCircle, DollarSign, BarChart3, MessageSquare } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 export default function TrustCatHomepage() {
   const [bootComplete, setBootComplete] = useState(false);
@@ -147,6 +148,7 @@ export default function TrustCatHomepage() {
             <a href="#brokers" className="hover:text-cyan-400 transition">Brokers</a>
             <a href="#terminal" className="hover:text-cyan-400 transition">Terminal</a>
             <a href="#whitepaper" className="hover:text-cyan-400 transition">Whitepaper</a>
+            <Link to="/bounties" className="hover:text-cyan-400 transition">Bounties</Link>
           </nav>
           <div className="flex items-center space-x-3">
             <button 
