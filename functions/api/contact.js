@@ -11,7 +11,7 @@ export async function onRequest(context) {
     const resend = new Resend(context.env.RESEND_API_KEY);
     const data = await request.json();
     
-    const { name, email, workload, gpu_count, duration_days, budget_usd } = data;
+    const { name, email, message, workload, gpu_count, duration_days, budget_usd, type } = data;
 
     if (!name || !email) {
       return new Response(
@@ -20,12 +20,12 @@ export async function onRequest(context) {
       );
     }
 
-    // Email to terminal@trustcat.ai
-    await resend.emails.send({
-      from: 'noreply@trustcat.ai',
-      to: 'terminal@trustcat.ai',
-      subject: `🔷 REQUEST: ${name} | ${gpu_count}x GPUs | ${duration_days}d`,
-      html: `
+    let emailSubject = '';
+    let emailHtml = '';
+
+    if (type === 'compute-request') {
+      emailSubject = `🔷 REQUEST: ${name} | ${gpu_count}x GPUs | ${duration_days}d`;
+      emailHtml = `
         <h2 style="color:#00FF00; font-family:monospace;">NEW COMPUTE REQUEST</h2>
         <pre style="color:#C0C0C0; font-family:monospace; white-space:pre-wrap; background:#1C2526; padding:1rem;">
 Name:        ${name}
@@ -35,24 +35,34 @@ GPU Count:   ${gpu_count}
 Duration:    ${duration_days} days
 Budget:      ${budget_usd || 'not specified'}
         </pre>
-        <p style="color:#888; font-size:0.9rem;">trustcat.ai | Terminal-Grade Compute Brokerage</p>
-      `,
+      `;
+    } else {
+      emailSubject = `Message from ${name}`;
+      emailHtml = `
+        <h2 style="color:#00FF00; font-family:monospace;">NEW CONTACT</h2>
+        <pre style="color:#C0C0C0; font-family:monospace; white-space:pre-wrap; background:#1C2526; padding:1rem;">
+Name:    ${name}
+Email:   ${email}
+Message: ${message || 'not specified'}
+        </pre>
+      `;
+    }
+
+    await resend.emails.send({
+      from: 'noreply@trustcat.ai',
+      to: 'terminal@trustcat.ai',
+      subject: emailSubject,
+      html: emailHtml,
     });
 
-    // Confirmation to user
     await resend.emails.send({
       from: 'noreply@trustcat.ai',
       to: email,
-      subject: '✅ Request Received - TrustCat.ai',
+      subject: '✅ Message Received - TrustCat.ai',
       html: `
-        <h2 style="color:#00FF00; font-family:monospace;">REQUEST RECEIVED</h2>
+        <h2 style="color:#00FF00; font-family:monospace;">MESSAGE RECEIVED</h2>
         <p style="color:#C0C0C0; font-family:monospace;">Hey ${name},</p>
-        <p style="color:#C0C0C0; font-family:monospace;">We got your compute request. Proposal incoming in 24h.</p>
-        <pre style="color:#C0C0C0; font-family:monospace; white-space:pre-wrap; background:#1C2526; padding:1rem;">
-GPUs:      ${gpu_count}
-Duration:  ${duration_days} days
-Workload:  ${workload || 'not specified'}
-        </pre>
+        <p style="color:#C0C0C0; font-family:monospace;">We got your message. Our team will review and get back to you within 24h.</p>
         <p style="color:#888; font-size:0.9rem;">—<br>trustcat.ai | terminal@trustcat.ai</p>
       `,
     });
@@ -60,7 +70,7 @@ Workload:  ${workload || 'not specified'}
     return new Response(
       JSON.stringify({
         success: true,
-        message: 'Request sent. Check your email.',
+        message: 'Message sent. Check your email.',
       }),
       { status: 200, headers: { 'Content-Type': 'application/json' } }
     );
