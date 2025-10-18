@@ -22,24 +22,6 @@ export default function TrustCatLanding() {
     return () => clearInterval(interval);
   }, []);
 
-  const handleSubmit = () => {
-    if (!formData.name || !formData.email || !formData.message) {
-      alert('Please fill all fields');
-      return;
-    }
-    
-    const emailBody = `
-TrustCat Contact Form Submission
-
-Name: ${formData.name}
-Email: ${formData.email}
-Message: ${formData.message}
-    `.trim();
-
-    const mailtoLink = `mailto:terminal@trustcat.ai?subject=Contact from ${encodeURIComponent(formData.name)}&body=${encodeURIComponent(emailBody)}`;
-    window.open(mailtoLink, '_blank');
-    setSubmitted(true);
-  };
 
   const capabilities = [
     { icon: '🧠', label: 'Machine Learning', desc: 'Large-scale model training & inference' },
